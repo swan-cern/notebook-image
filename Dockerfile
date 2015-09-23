@@ -1,7 +1,7 @@
 
 # Analogous to jupyter/notebook, based on CC7.
 # Installs Jupyter Notebook and IPython kernel from the current branch.
-# Another Docker container should inherit with `FROM etejedor/notebook`
+# Another Docker container should inherit with `FROM cernphsft/notebook`
 # to run actual services.
 
 FROM cern/cc7-base
