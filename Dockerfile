@@ -51,7 +51,8 @@ RUN wget http://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz && \
 WORKDIR /tmp/pytmp/Python-2.7.10
 RUN ./configure --enable-shared && \
     make install
-ENV LD_LIBRARY_PATH /usr/local/lib/:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH /usr/local/lib/
+RUN echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" >> /etc/environment
 
 # Install Python 3
 WORKDIR /tmp/pytmp
@@ -73,8 +74,8 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
     pip3 --no-cache-dir install requests[security]
 
 # Install some dependencies
-RUN pip2 --no-cache-dir install ipykernel && \
-    pip3 --no-cache-dir install ipykernel && \
+RUN pip2 --no-cache-dir install ipykernel ipywidgets && \
+    pip3 --no-cache-dir install ipykernel ipywidgets && \
     \
     python2 -m ipykernel.kernelspec && \
     python3 -m ipykernel.kernelspec
