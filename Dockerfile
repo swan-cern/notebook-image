@@ -74,8 +74,8 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
     pip3 --no-cache-dir install requests[security]
 
 # Install some dependencies
-RUN pip2 --no-cache-dir install ipykernel ipywidgets && \
-    pip3 --no-cache-dir install ipykernel ipywidgets && \
+RUN pip2 --no-cache-dir install ipykernel && \
+    pip3 --no-cache-dir install ipykernel && \
     \
     python2 -m ipykernel.kernelspec && \
     python3 -m ipykernel.kernelspec
