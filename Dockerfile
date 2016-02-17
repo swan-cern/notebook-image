@@ -34,6 +34,7 @@ RUN yum -y install \
     texlive-latex \
     texlive-texmf-fonts \
     wget \
+    which \
     zeromq3-devel \
     zlib-devel
 
