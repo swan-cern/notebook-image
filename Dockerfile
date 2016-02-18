@@ -4,7 +4,7 @@
 # Another Docker container should inherit with `FROM cernphsft/notebook`
 # to run actual services.
 
-FROM cern/slc6-base:20151204
+FROM cern/slc6-base
 
 MAINTAINER Enric Tejedor Saavedra <enric.tejedor.saavedra@cern.ch>
 
