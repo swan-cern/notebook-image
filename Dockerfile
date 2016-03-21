@@ -8,7 +8,7 @@ FROM cern/slc6-base
 
 MAINTAINER Enric Tejedor Saavedra <enric.tejedor.saavedra@cern.ch>
 
-# Not essential, but wise to set the lang
+# Not essential, but wise to set the lang.
 # Note: Users with other languages should set this in their derivative image
 ENV LANGUAGE en_US.UTF-8
 ENV LANG en_US.UTF-8
