@@ -1,4 +1,3 @@
-
 # Analogous to jupyter/notebook, based on SLC6.
 # Installs Jupyter Notebook and IPython kernel from the current branch.
 # Another Docker container should inherit with `FROM cernphsft/notebook`
@@ -16,7 +15,7 @@ ENV LC_ALL en_US.UTF-8
 ENV PYTHONIOENCODING UTF-8
 
 # Install developer tools
-RUN yum -y update 
+RUN yum -y update
 RUN yum -y install \
     gcc \
     gcc-c++ \
@@ -25,6 +24,7 @@ RUN yum -y install \
     libcurl-openssl-devel \
     libffi-devel \
     ncurses-devel \
+    nano \
     nodejs \
     npm \
     pandoc \
@@ -70,31 +70,14 @@ RUN rm -rf /tmp/pytmp
 RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
     python2 get-pip.py && \
     python3 get-pip.py && \
-    rm get-pip.py && \
-    pip2 --no-cache-dir install requests[security] && \
-    pip3 --no-cache-dir install requests[security]
+    rm get-pip.py
 
-# Install some dependencies
+# Install IPython kernel
 RUN pip2 --no-cache-dir install ipykernel && \
-    pip3 --no-cache-dir install ipykernel && \
-    \
-    python2 -m ipykernel.kernelspec && \
-    python3 -m ipykernel.kernelspec
+    python2 -m ipykernel.kernelspec
 
-# Move notebook contents into place
-RUN JSRCDIR=/usr/src/jupyter-notebook && \
-    mkdir $JSRCDIR && \
-    git clone https://github.com/jupyter/notebook $JSRCDIR
-
-# Install dependencies and run tests
-RUN pip2 install --no-cache-dir readline mock nose requests testpath && \
-    pip3 install --no-cache-dir --pre -e /usr/src/jupyter-notebook && \
-    pip3 install --no-cache-dir readline nose requests testpath && \
-    \
-    iptest2 && iptest3 && \
-    \
-    pip2 uninstall -y funcsigs mock nose pbr requests six testpath && \
-    pip3 uninstall -y nose requests testpath
+# Install notebook
+RUN pip3 --no-cache-dir install 'notebook==4.1'
 
 # Add a notebook profile
 RUN mkdir -p -m 700 /root/.jupyter/ && \
@@ -107,3 +90,4 @@ EXPOSE 8888
 
 ENTRYPOINT ["tini", "--"]
 CMD ["jupyter", "notebook"]
+
