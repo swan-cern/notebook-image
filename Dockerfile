@@ -33,10 +33,21 @@ RUN yum -y install \
     tar \
     texlive-latex \
     texlive-texmf-fonts \
+    unzip \
     wget \
     which \
     zeromq3-devel \
     zlib-devel
+
+# Install Latex packages (missing in SLC6, needed to convert notebooks to PDF)
+WORKDIR /usr/share/texmf
+RUN wget http://mirrors.ctan.org/install/macros/latex/contrib/adjustbox.tds.zip && \
+    unzip -d . adjustbox.tds.zip && \ 
+    rm adjustbox.tds.zip
+RUN wget http://mirrors.ctan.org/install/macros/latex/contrib/collectbox.tds.zip && \
+    unzip -d . collectbox.tds.zip && \
+    rm collectbox.tds.zip
+RUN mktexlsr
 
 # Install Tini
 RUN curl -L https://github.com/krallin/tini/releases/download/v0.6.0/tini > tini && \
