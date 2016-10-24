@@ -37,7 +37,7 @@ RUN yum -y install \
     wget \
     which \
     zeromq3-devel \
-    zlib-devel
+    zlib-devel && yum clean all
 
 # Install Latex packages (missing in SLC6, needed to convert notebooks to PDF)
 WORKDIR /usr/share/texmf
