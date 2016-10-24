@@ -88,7 +88,7 @@ RUN pip2 --no-cache-dir install ipykernel && \
     python2 -m ipykernel.kernelspec
 
 # Install notebook
-RUN pip3 --no-cache-dir install 'notebook==4.1'
+RUN pip3 --no-cache-dir install 'notebook==4.2.3'
 
 # Add a notebook profile
 RUN mkdir -p -m 700 /root/.jupyter/ && \
