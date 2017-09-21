@@ -68,6 +68,7 @@ RUN ./configure --enable-shared && \
 # Cleanup
 RUN rm -rf /tmp/pytmp
 
+# Set up the LD_LIBRARY_PATH for Pip3 and Python3 to work
 ENV LD_LIBRARY_PATH /usr/local/lib/
 RUN echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" >> /etc/environment
 
@@ -81,10 +82,6 @@ RUN pip3 --no-cache-dir install \
             'jupyterhub==0.7.2' \
             'jupyterlab==0.24.1' \
             'jupyter_nbextensions_configurator'
-
-# Add a notebook profile
-RUN mkdir -p -m 700 /root/.jupyter/ && \
-    echo "c.NotebookApp.ip = '*'" >> /root/.jupyter/jupyter_notebook_config.py
 
 VOLUME /notebooks
 WORKDIR /notebooks
