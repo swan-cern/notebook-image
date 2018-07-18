@@ -1,11 +1,11 @@
-# Analogous to jupyter/notebook, based on SLC6.
+# Analogous to jupyter/notebook, based on CC7.
 # Installs Jupyter Notebook and IPython kernel from the current branch.
 # Another Docker container should inherit with `FROM cernphsft/notebook`
 # to run actual services.
 
-FROM cern/slc6-base
+FROM cern/cc7-base:20180516
 
-MAINTAINER Enric Tejedor Saavedra <enric.tejedor.saavedra@cern.ch>
+MAINTAINER SWAN Admins <swan-admins@cern.ch>
 
 # Not essential, but wise to set the lang.
 # Note: Users with other languages should set this in their derivative image
@@ -24,14 +24,15 @@ RUN yum -y update && \
         kernel-devel \
         libcurl-openssl-devel \
         libffi-devel \
+        make \
         ncurses-devel \
         nano \
         nodejs \
         npm \
+        openssl-devel \
         pandoc \
         patch \
         sqlite-devel \
-        tar \
         texlive-latex \
         texlive-texmf-fonts \
         unzip \
@@ -42,7 +43,8 @@ RUN yum -y update && \
     yum clean all && \
     rm -rf /var/cache/yum
 
-# Install Latex packages (missing in SLC6, needed to convert notebooks to PDF)
+# Install Latex packages (missing in CC7, needed to convert notebooks to PDF)
+# Still required in CC7 - https://centos.org/forums/viewtopic.php?t=60137
 WORKDIR /usr/share/texmf
 RUN wget http://mirrors.ctan.org/install/macros/latex/contrib/adjustbox.tds.zip && \
     unzip -d . adjustbox.tds.zip && \ 
