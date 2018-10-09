@@ -15,6 +15,7 @@ ENV LC_ALL en_US.UTF-8
 ENV PYTHONIOENCODING UTF-8
 
 # Install developer tools
+# Install Latex packages (needed to convert notebooks to PDF)
 RUN yum -y update && \
     yum -y install \
         bzip2 \
@@ -30,29 +31,28 @@ RUN yum -y update && \
         nodejs \
         npm \
         openssl-devel \
-        pandoc \
         patch \
         sqlite-devel \
-        texlive-latex \
-        texlive-texmf-fonts \
         unzip \
         wget \
         which \
         zeromq3-devel \
-        zlib-devel && \
+        zlib-devel \
+        texlive-xetex \
+        texlive-adjustbox.noarch \
+        texlive-collection-latexrecommended.noarch \
+        texlive-collection-xetex.noarch \
+        texlive-upquote.noarch && \
     yum clean all && \
     rm -rf /var/cache/yum
 
-# Install Latex packages (missing in CC7, needed to convert notebooks to PDF)
-# Still required in CC7 - https://centos.org/forums/viewtopic.php?t=60137
-WORKDIR /usr/share/texmf
-RUN wget http://mirrors.ctan.org/install/macros/latex/contrib/adjustbox.tds.zip && \
-    unzip -d . adjustbox.tds.zip && \ 
-    rm adjustbox.tds.zip && \
-    wget http://mirrors.ctan.org/install/macros/latex/contrib/collectbox.tds.zip && \
-    unzip -d . collectbox.tds.zip && \
-    rm collectbox.tds.zip && \
-    mktexlsr
+# Install a newer version of pandoc, than the one available in yum repos
+# For converting markdown to formats other than HTML
+RUN mkdir /tmp/pandoc && \
+    cd /tmp/pandoc && \
+    wget --quiet https://github.com/jgm/pandoc/releases/download/2.3.1/pandoc-2.3.1-linux.tar.gz && \
+    tar xvzf pandoc-2.3.1-linux.tar.gz --strip-components 1 -C /usr/local/ && \
+    rm -rf /tmp/pandoc
 
 # Install Tini
 RUN wget --quiet https://github.com/krallin/tini/releases/download/v0.10.0/tini && \
