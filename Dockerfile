@@ -80,9 +80,9 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
     rm get-pip.py
 
 RUN pip3 --no-cache-dir install \
-            'notebook==5.6.0' \
+            'notebook==5.7.4' \
             'jupyterhub==0.8.1' \
-            'jupyterlab==0.31.12' \
+            'jupyterlab==0.35.4' \
             'jupyter_nbextensions_configurator'
 
 VOLUME /notebooks
