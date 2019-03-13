@@ -80,7 +80,7 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
 # Force tornado 5 as version 6 breaks jupyter
 RUN pip3 --no-cache-dir install \
             'tornado==5.1.1' \
-            'notebook==5.7.4' \
+            'notebook==5.7.6' \
             'jupyterhub==0.9.4' \
             'jupyterlab==0.35.4' \
             'jupyter_nbextensions_configurator'
