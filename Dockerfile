@@ -3,7 +3,7 @@
 # Another Docker container should inherit with `FROM cernphsft/notebook`
 # to run actual services.
 
-FROM cern/cc7-base:20181210
+FROM cern/cc7-base:20191107
 
 MAINTAINER SWAN Admins <swan-admins@cern.ch>
 
