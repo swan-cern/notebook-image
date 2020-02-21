@@ -38,11 +38,8 @@ RUN curl -sL https://rpm.nodesource.com/setup_12.x | bash - && \
         which \
         zeromq3-devel \
         zlib-devel \
-        texlive-xetex \
-        texlive-adjustbox.noarch \
-        texlive-collection-latexrecommended.noarch \
-        texlive-collection-xetex.noarch \
-        texlive-upquote.noarch && \
+        perl-Digest-MD5 \
+        fontconfig && \
     yum clean all && \
     rm -rf /var/cache/yum
 
@@ -53,6 +50,26 @@ RUN mkdir /tmp/pandoc && \
     wget --quiet https://github.com/jgm/pandoc/releases/download/2.3.1/pandoc-2.3.1-linux.tar.gz && \
     tar xvzf pandoc-2.3.1-linux.tar.gz --strip-components 1 -C /usr/local/ && \
     rm -rf /tmp/pandoc
+
+# Install a newer version of TeX Live, than the one available in yum repos
+# For converting to PDF
+ENV PATH /usr/local/texlive/2019/bin/x86_64-linux/:$PATH
+RUN mkdir /tmp/texlive && \
+    cd /tmp/texlive && \
+    wget --quiet http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
+    tar xvzf install-tl-unx.tar.gz --strip-components 1 -C ./ && \
+    echo "I" | ./install-tl -scheme scheme-small && \
+    tlmgr install   adjustbox \
+                    tcolorbox \
+                    environ \
+                    trimspaces \
+                    adjustbox \
+                    collectbox \
+                    ucs \
+                    titling \
+                    enumitem \
+                    collection-fontsrecommended && \
+    rm -rf /tmp/texlive
 
 # Install Tini
 RUN wget --quiet https://github.com/krallin/tini/releases/download/v0.10.0/tini && \
