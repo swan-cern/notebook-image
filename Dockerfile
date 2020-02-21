@@ -16,7 +16,8 @@ ENV PYTHONIOENCODING UTF-8
 
 # Install developer tools
 # Install Latex packages (needed to convert notebooks to PDF)
-RUN yum -y update && \
+RUN curl -sL https://rpm.nodesource.com/setup_12.x | bash - && \
+    yum -y update && \
     yum -y install \
         bzip2 \
         gcc \
@@ -29,7 +30,6 @@ RUN yum -y update && \
         ncurses-devel \
         nano \
         nodejs \
-        npm \
         openssl-devel \
         patch \
         sqlite-devel \
