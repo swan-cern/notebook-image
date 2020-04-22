@@ -15,6 +15,9 @@ build_image:
     except:
         - web
         - master
+    tags:
+        - swan-runner
+
 
 
 publish_image:
@@ -26,6 +29,8 @@ publish_image:
         - docker logout
     only: 
         - /^v.*$/
+    tags:
+        - swan-runner
     except:
         - web
     when: on_success
@@ -35,6 +40,8 @@ clean_images:
     stage: clean
     script:
         - docker rmi $CI_COMMIT_SHA
+    tags:
+        - swan-runner
     except: 
         - master
         - web
