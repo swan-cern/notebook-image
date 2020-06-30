@@ -68,6 +68,8 @@ RUN mkdir /tmp/texlive && \
                     ucs \
                     titling \
                     enumitem \
+                    type1cm \
+                    cm-super \
                     collection-fontsrecommended && \
     rm -rf /tmp/texlive
 
