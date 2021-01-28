@@ -3,9 +3,9 @@
 # Another Docker container should inherit with `FROM cernphsft/notebook`
 # to run actual services.
 
-FROM cern/cc7-base:20191107
+FROM cern/cc7-base:20201201-1.x86_64
 
-MAINTAINER SWAN Admins <swan-admins@cern.ch>
+LABEL maintainer="swan-admins@cern.ch"
 
 # Not essential, but wise to set the lang.
 # Note: Users with other languages should set this in their derivative image
