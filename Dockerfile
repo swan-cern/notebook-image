@@ -103,7 +103,8 @@ RUN pip3 --no-cache-dir install \
             'notebook==6.1.3' \
             'jupyterhub==1.1.0' \
             'jupyterlab==2.2.6' \
-            'jupyter_nbextensions_configurator'
+            'jupyter_nbextensions_configurator' \
+            'voila'
 
 VOLUME /notebooks
 WORKDIR /notebooks
