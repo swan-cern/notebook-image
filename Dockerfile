@@ -53,7 +53,7 @@ RUN mkdir /tmp/pandoc && \
 
 # Install a newer version of TeX Live, than the one available in yum repos
 # For converting to PDF
-ENV PATH /usr/local/texlive/2020/bin/x86_64-linux/:$PATH
+ENV PATH /usr/local/texlive/2021/bin/x86_64-linux/:$PATH
 RUN mkdir /tmp/texlive && \
     cd /tmp/texlive && \
     wget --quiet http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
@@ -100,9 +100,9 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
 
 RUN pip3 --no-cache-dir install \
             'ipyparallel' \
-            'notebook==6.1.3' \
-            'jupyterhub==1.1.0' \
-            'jupyterlab==2.2.6' \
+            'notebook==6.4.0' \
+            'jupyterhub==1.4.1' \
+            'jupyterlab==3.0.15' \
             'jupyter_nbextensions_configurator' \
             'voila'
 
