@@ -3,7 +3,7 @@
 # Another Docker container should inherit with `FROM cernphsft/notebook`
 # to run actual services.
 
-FROM cern/cc7-base:20201201-1.x86_64
+FROM gitlab-registry.cern.ch/linuxsupport/cc7-base:20210715-1.x86_64
 
 LABEL maintainer="swan-admins@cern.ch"
 
@@ -53,7 +53,7 @@ RUN mkdir /tmp/pandoc && \
 
 # Install a newer version of TeX Live, than the one available in yum repos
 # For converting to PDF
-ENV PATH /usr/local/texlive/2020/bin/x86_64-linux/:$PATH
+ENV PATH /usr/local/texlive/2021/bin/x86_64-linux/:$PATH
 RUN mkdir /tmp/texlive && \
     cd /tmp/texlive && \
     wget --quiet http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
@@ -82,9 +82,9 @@ RUN wget --quiet https://github.com/krallin/tini/releases/download/v0.10.0/tini 
 # Install Python 3
 RUN mkdir /tmp/pytmp && \
     cd /tmp/pytmp && \
-    wget https://www.python.org/ftp/python/3.7.6/Python-3.7.6.tgz && \
-    tar xzvf Python-3.7.6.tgz && \
-    cd /tmp/pytmp/Python-3.7.6 && \
+    wget https://www.python.org/ftp/python/3.9.6/Python-3.9.6.tgz && \
+    tar xzvf Python-3.9.6.tgz && \
+    cd /tmp/pytmp/Python-3.9.6 && \
     ./configure --enable-shared && \
     make install && \
     rm -rf /tmp/pytmp
@@ -100,7 +100,7 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
 
 RUN pip3 --no-cache-dir install \
             'ipyparallel' \
-            'notebook==6.1.3' \
+            'notebook==6.1.6' \
             'jupyterhub==1.1.0' \
             'jupyterlab==2.2.6' \
             'jupyter_nbextensions_configurator' \
