@@ -11,7 +11,9 @@ stages:
 
 build_image:
     stage: build
-    script: docker build --compress --rm -t $CI_COMMIT_SHA .
+    script:
+        - docker login gitlab-registry.cern.ch -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
+        - docker build --compress --rm -t $CI_COMMIT_SHA .
     except:
         - web
         - master
