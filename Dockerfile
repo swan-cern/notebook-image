@@ -101,8 +101,8 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
 RUN pip3 --no-cache-dir install \
             'ipyparallel' \
             'notebook==6.4.2' \
-            'jupyterhub==1.1.0' \
-            'jupyterlab==2.2.10' \
+            'jupyterhub==1.4.2' \
+            'jupyterlab==3.1.10' \
             'jupyter_nbextensions_configurator' \
             'voila'
 
