@@ -74,8 +74,8 @@ RUN mkdir /tmp/texlive && \
     rm -rf /tmp/texlive
 
 # Install Tini
-RUN wget --quiet https://github.com/krallin/tini/releases/download/v0.10.0/tini && \
-    echo "1361527f39190a7338a0b434bd8c88ff7233ce7b9a4876f3315c22fce7eca1b0 *tini" | sha256sum -c - && \
+RUN wget --quiet https://github.com/krallin/tini/releases/download/v0.19.0/tini && \
+    echo "93dcc18adc78c65a028a84799ecf8ad40c936fdfc5f2a57b1acda5a8117fa82c *tini" | sha256sum -c - && \
     mv tini /usr/local/bin/tini && \
     chmod +x /usr/local/bin/tini
 
