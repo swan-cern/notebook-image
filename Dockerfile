@@ -3,7 +3,7 @@
 # Another Docker container should inherit with `FROM cernphsft/notebook`
 # to run actual services.
 
-FROM gitlab-registry.cern.ch/linuxsupport/cc7-base:20210715-1.x86_64
+FROM gitlab-registry.cern.ch/linuxsupport/cc7-base:20230801-1.x86_64
 
 LABEL maintainer="swan-admins@cern.ch"
 
