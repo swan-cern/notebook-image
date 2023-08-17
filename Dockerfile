@@ -102,6 +102,7 @@ RUN pip3 --no-cache-dir install \
             'ipyparallel==6.3.0' \
             'notebook==6.4.2' \
             'jupyterhub==4.0.2' \
+            'urllib3==1.26.16' \
             'jupyterlab==3.0.17' \
             'jupyter_nbextensions_configurator' \
             'voila'
