@@ -53,7 +53,7 @@ RUN mkdir /tmp/pandoc && \
 
 # Install a newer version of TeX Live, than the one available in yum repos
 # For converting to PDF
-ENV PATH /usr/local/texlive/2021/bin/x86_64-linux/:$PATH
+ENV PATH /usr/local/texlive/2023/bin/x86_64-linux/:$PATH
 RUN mkdir /tmp/texlive && \
     cd /tmp/texlive && \
     wget --quiet http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
